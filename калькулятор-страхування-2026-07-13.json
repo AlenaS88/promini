@@ -1,0 +1,737 @@
+{
+  "version": 1,
+  "exportedAt": "2026-07-13T15:39:48.341Z",
+  "state": {
+    "categories": [
+      "вік водіїв від 27 років, пробіг за рік до 15 тис.км",
+      "вік водіїв від 27 років, пробіг за рік до 30 тис.км",
+      "без обмежень по віку і пробіг за рік до 15 тис.км",
+      "без обмежень по віку і пробіг за рік до 30 тис.км",
+      "без обмежень",
+      "без обмежень по віку водіїв",
+      "без обмежень по віку та пробігу",
+      "без обмежень по віку водіїв + тех.асистанс",
+      "вік водіїв від 30 років",
+      "вік водіїв від 22 до 75 років",
+      "вік водіїв від 23 до 76 років",
+      "вік водіїв від 24 до 39 років",
+      "вік водіїв від 25 до 75 років",
+      "вік водіїв від 36 до 65 років",
+      "вік водіїв від 22 років",
+      "вік водіїв від 25 років",
+      "вік водіїв від 26 років",
+      "вік водіїв від 27 років",
+      "вік водіїв від 33 років",
+      "вік водіїв від 40 років",
+      "вік водіїв від 46 років",
+      "вік водіїв від 49 років"
+    ],
+    "insurerOrder": [
+      "ТАТАТАТА",
+      "СК «Євроінс Україна»",
+      "СК «ББС ІНШУРАНС»",
+      "СК «USG»",
+      "СК «АРСЕНАЛ СТРАХУВАННЯ»",
+      "СК «ЄСА»",
+      "СК «UTICO»",
+      "СК «ІНГО»",
+      "СК «АРКС»",
+      "СК «ТАС»",
+      "СК «КНЯЖА»",
+      "СК «ПЗУ УКРАЇНА»",
+      "СК «ОРАНТА»",
+      "СК «Експрес Страхування»",
+      "СК «ВУСО»",
+      "СК «Універсальна»",
+      "СК «Еталон»",
+      "СК «ІНТЕР-ПОЛІС»",
+      "СК «UNIQA»",
+      "СК «ЄТС»"
+    ],
+    "removedInsurers": [],
+    "categoryPreferences": {
+      "default-0": "без обмежень по віку і пробіг за рік до 15 тис.км",
+      "default-1": "без обмежень по віку водіїв + тех.асистанс",
+      "default-2": "вік водіїв від 23 до 76 років",
+      "default-3": "Стандарт",
+      "default-4": "Стандарт",
+      "default-5": "Стандарт",
+      "default-6": "Стандарт",
+      "default-7": "Стандарт",
+      "default-8": "Стандарт",
+      "default-9": "Стандарт",
+      "default-10": "Стандарт",
+      "default-11": "Стандарт",
+      "default-12": "Стандарт",
+      "default-13": "Стандарт",
+      "default-14": "Стандарт",
+      "default-15": "Стандарт",
+      "default-16": "Стандарт",
+      "default-17": "Стандарт",
+      "default-18": "Стандарт",
+      "default-19": "Стандарт",
+      "custom-1783952731364-21": "вік водіїв від 27 років, пробіг за рік до 15 тис.км"
+    },
+    "collapsedGroups": {
+      "default-0": false,
+      "default-1": false,
+      "default-7": true,
+      "default-8": true,
+      "default-9": true,
+      "default-10": true,
+      "default-11": true,
+      "default-12": true,
+      "default-13": true,
+      "custom-1783952731364-21": false,
+      "default-2": true,
+      "default-3": true,
+      "default-4": true,
+      "default-5": true
+    },
+    "customInsurers": [
+      {
+        "name": "ТАТАТАТА",
+        "logo": "data:image/png;base64,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",
+        "groupKey": "custom-1783952731364-21"
+      }
+    ],
+    "signature": "Лукʼянчук",
+    "offers": [
+      {
+        "id": 1,
+        "groupId": "group-1",
+        "groupKey": "default-0",
+        "insurer": "СК «Євроінс Україна»",
+        "category": "без обмежень по віку і пробіг за рік до 15 тис.км",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 2,
+        "groupId": "group-1",
+        "groupKey": "default-0",
+        "insurer": "СК «Євроінс Україна»",
+        "category": "без обмежень по віку і пробіг за рік до 15 тис.км",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 3,
+        "groupId": "group-1",
+        "groupKey": "default-0",
+        "insurer": "СК «Євроінс Україна»",
+        "category": "без обмежень по віку і пробіг за рік до 15 тис.км",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      },
+      {
+        "id": 4,
+        "groupId": "group-2",
+        "groupKey": "default-1",
+        "insurer": "СК «Євроінс Україна»",
+        "category": "без обмежень по віку водіїв + тех.асистанс",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 5,
+        "groupId": "group-2",
+        "groupKey": "default-1",
+        "insurer": "СК «Євроінс Україна»",
+        "category": "без обмежень по віку водіїв + тех.асистанс",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 6,
+        "groupId": "group-2",
+        "groupKey": "default-1",
+        "insurer": "СК «Євроінс Україна»",
+        "category": "без обмежень по віку водіїв + тех.асистанс",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      },
+      {
+        "id": 7,
+        "groupId": "group-3",
+        "groupKey": "default-2",
+        "insurer": "СК «ББС ІНШУРАНС»",
+        "category": "вік водіїв від 23 до 76 років",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 8,
+        "groupId": "group-3",
+        "groupKey": "default-2",
+        "insurer": "СК «ББС ІНШУРАНС»",
+        "category": "вік водіїв від 23 до 76 років",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 9,
+        "groupId": "group-3",
+        "groupKey": "default-2",
+        "insurer": "СК «ББС ІНШУРАНС»",
+        "category": "вік водіїв від 23 до 76 років",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 10,
+        "groupId": "group-4",
+        "groupKey": "default-3",
+        "insurer": "СК «USG»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 11,
+        "groupId": "group-4",
+        "groupKey": "default-3",
+        "insurer": "СК «USG»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 12,
+        "groupId": "group-4",
+        "groupKey": "default-3",
+        "insurer": "СК «USG»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      },
+      {
+        "id": 13,
+        "groupId": "group-5",
+        "groupKey": "default-4",
+        "insurer": "СК «АРСЕНАЛ СТРАХУВАННЯ»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 4,
+        "selected": false
+      },
+      {
+        "id": 14,
+        "groupId": "group-5",
+        "groupKey": "default-4",
+        "insurer": "СК «АРСЕНАЛ СТРАХУВАННЯ»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 15,
+        "groupId": "group-5",
+        "groupKey": "default-4",
+        "insurer": "СК «АРСЕНАЛ СТРАХУВАННЯ»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      },
+      {
+        "id": 16,
+        "groupId": "group-6",
+        "groupKey": "default-5",
+        "insurer": "СК «ЄСА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 3,
+        "selected": false
+      },
+      {
+        "id": 17,
+        "groupId": "group-6",
+        "groupKey": "default-5",
+        "insurer": "СК «ЄСА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 18,
+        "groupId": "group-6",
+        "groupKey": "default-5",
+        "insurer": "СК «ЄСА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 8,
+        "selected": false
+      },
+      {
+        "id": 19,
+        "groupId": "group-7",
+        "groupKey": "default-6",
+        "insurer": "СК «UTICO»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 20,
+        "groupId": "group-7",
+        "groupKey": "default-6",
+        "insurer": "СК «UTICO»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 21,
+        "groupId": "group-7",
+        "groupKey": "default-6",
+        "insurer": "СК «UTICO»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 8,
+        "selected": false
+      },
+      {
+        "id": 22,
+        "groupId": "group-8",
+        "groupKey": "default-7",
+        "insurer": "СК «ІНГО»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 3,
+        "selected": false
+      },
+      {
+        "id": 23,
+        "groupId": "group-8",
+        "groupKey": "default-7",
+        "insurer": "СК «ІНГО»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 24,
+        "groupId": "group-8",
+        "groupKey": "default-7",
+        "insurer": "СК «ІНГО»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 25,
+        "groupId": "group-9",
+        "groupKey": "default-8",
+        "insurer": "СК «АРКС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 26,
+        "groupId": "group-9",
+        "groupKey": "default-8",
+        "insurer": "СК «АРКС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 27,
+        "groupId": "group-9",
+        "groupKey": "default-8",
+        "insurer": "СК «АРКС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 8,
+        "selected": false
+      },
+      {
+        "id": 28,
+        "groupId": "group-10",
+        "groupKey": "default-9",
+        "insurer": "СК «ТАС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 3,
+        "selected": false
+      },
+      {
+        "id": 29,
+        "groupId": "group-10",
+        "groupKey": "default-9",
+        "insurer": "СК «ТАС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 30,
+        "groupId": "group-10",
+        "groupKey": "default-9",
+        "insurer": "СК «ТАС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      },
+      {
+        "id": 31,
+        "groupId": "group-11",
+        "groupKey": "default-10",
+        "insurer": "СК «КНЯЖА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 32,
+        "groupId": "group-11",
+        "groupKey": "default-10",
+        "insurer": "СК «КНЯЖА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 33,
+        "groupId": "group-11",
+        "groupKey": "default-10",
+        "insurer": "СК «КНЯЖА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 8,
+        "selected": false
+      },
+      {
+        "id": 34,
+        "groupId": "group-12",
+        "groupKey": "default-11",
+        "insurer": "СК «ПЗУ УКРАЇНА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 35,
+        "groupId": "group-12",
+        "groupKey": "default-11",
+        "insurer": "СК «ПЗУ УКРАЇНА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 36,
+        "groupId": "group-12",
+        "groupKey": "default-11",
+        "insurer": "СК «ПЗУ УКРАЇНА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 37,
+        "groupId": "group-13",
+        "groupKey": "default-12",
+        "insurer": "СК «ОРАНТА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 38,
+        "groupId": "group-13",
+        "groupKey": "default-12",
+        "insurer": "СК «ОРАНТА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 4,
+        "selected": false
+      },
+      {
+        "id": 39,
+        "groupId": "group-13",
+        "groupKey": "default-12",
+        "insurer": "СК «ОРАНТА»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 40,
+        "groupId": "group-14",
+        "groupKey": "default-13",
+        "insurer": "СК «Експрес Страхування»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 3,
+        "selected": false
+      },
+      {
+        "id": 41,
+        "groupId": "group-14",
+        "groupKey": "default-13",
+        "insurer": "СК «Експрес Страхування»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 42,
+        "groupId": "group-14",
+        "groupKey": "default-13",
+        "insurer": "СК «Експрес Страхування»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 8,
+        "selected": false
+      },
+      {
+        "id": 43,
+        "groupId": "group-15",
+        "groupKey": "default-14",
+        "insurer": "СК «ВУСО»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 44,
+        "groupId": "group-15",
+        "groupKey": "default-14",
+        "insurer": "СК «ВУСО»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 45,
+        "groupId": "group-15",
+        "groupKey": "default-14",
+        "insurer": "СК «ВУСО»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 46,
+        "groupId": "group-16",
+        "groupKey": "default-15",
+        "insurer": "СК «Універсальна»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 47,
+        "groupId": "group-16",
+        "groupKey": "default-15",
+        "insurer": "СК «Універсальна»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 48,
+        "groupId": "group-16",
+        "groupKey": "default-15",
+        "insurer": "СК «Універсальна»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 8,
+        "selected": false
+      },
+      {
+        "id": 49,
+        "groupId": "group-17",
+        "groupKey": "default-16",
+        "insurer": "СК «Еталон»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 50,
+        "groupId": "group-17",
+        "groupKey": "default-16",
+        "insurer": "СК «Еталон»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 4,
+        "selected": false
+      },
+      {
+        "id": 51,
+        "groupId": "group-17",
+        "groupKey": "default-16",
+        "insurer": "СК «Еталон»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 52,
+        "groupId": "group-18",
+        "groupKey": "default-17",
+        "insurer": "СК «ІНТЕР-ПОЛІС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 53,
+        "groupId": "group-18",
+        "groupKey": "default-17",
+        "insurer": "СК «ІНТЕР-ПОЛІС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 5,
+        "selected": false
+      },
+      {
+        "id": 54,
+        "groupId": "group-18",
+        "groupKey": "default-17",
+        "insurer": "СК «ІНТЕР-ПОЛІС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 55,
+        "groupId": "group-19",
+        "groupKey": "default-18",
+        "insurer": "СК «UNIQA»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 3,
+        "selected": false
+      },
+      {
+        "id": 56,
+        "groupId": "group-19",
+        "groupKey": "default-18",
+        "insurer": "СК «UNIQA»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 57,
+        "groupId": "group-19",
+        "groupKey": "default-18",
+        "insurer": "СК «UNIQA»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      },
+      {
+        "id": 58,
+        "groupId": "group-20",
+        "groupKey": "default-19",
+        "insurer": "СК «ЄТС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 59,
+        "groupId": "group-20",
+        "groupKey": "default-19",
+        "insurer": "СК «ЄТС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 4,
+        "selected": false
+      },
+      {
+        "id": 60,
+        "groupId": "group-20",
+        "groupKey": "default-19",
+        "insurer": "СК «ЄТС»",
+        "category": "Стандарт",
+        "amount": null,
+        "discount": 6,
+        "selected": false
+      },
+      {
+        "id": 61,
+        "groupId": "group-21",
+        "groupKey": "custom-1783952731364-21",
+        "insurer": "ТАТАТАТА",
+        "category": "вік водіїв від 27 років, пробіг за рік до 15 тис.км",
+        "amount": null,
+        "discount": 2,
+        "selected": false
+      },
+      {
+        "id": 62,
+        "groupId": "group-21",
+        "groupKey": "custom-1783952731364-21",
+        "insurer": "ТАТАТАТА",
+        "category": "вік водіїв від 27 років, пробіг за рік до 15 тис.км",
+        "amount": null,
+        "discount": 7,
+        "selected": false
+      },
+      {
+        "id": 63,
+        "groupId": "group-21",
+        "groupKey": "custom-1783952731364-21",
+        "insurer": "ТАТАТАТА",
+        "category": "вік водіїв від 27 років, пробіг за рік до 15 тис.км",
+        "amount": null,
+        "discount": 9,
+        "selected": false
+      }
+    ]
+  },
+  "form": {
+    "clientName": "",
+    "proposalNoteShort": "Пропоную оформити поліс за найвигіднішим варіантом:",
+    "proposalNoteDetailed": "Пропоную розглянути такі варіанти страхування:"
+  }
+}

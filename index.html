@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#12372a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <title>Наталія Таталія PRO</title>
+  <style>
+    :root {
+      --ink: #18342b;
+      --muted: #6e7f78;
+      --line: #dbe7df;
+      --paper: #fffdf8;
+      --cream: #f4f6ee;
+      --green: #176b4b;
+      --green-dark: #12372a;
+      --mint: #dcf3e8;
+      --yellow: #fff0a8;
+      --coral: #ff8c68;
+      --shadow: 0 10px 28px rgba(25, 52, 43, .08);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255, 240, 168, .55), transparent 28rem),
+        radial-gradient(circle at 100% 8%, rgba(220, 243, 232, .8), transparent 30rem),
+        var(--cream);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1500px, 100%); margin: 0 auto; padding: 14px; }
+    .hero { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 10px; }
+    h1 { margin: 0; color: var(--green-dark); font-family: Georgia, serif; font-size: 1.35rem; line-height: 1.05; letter-spacing: 0; }
+    .workbench { display: grid; grid-template-columns: minmax(720px, 1fr) 390px; gap: 12px; align-items: start; }
+    .stack { display: grid; gap: 14px; }
+    .card { overflow: hidden; border: 1px solid rgba(24, 52, 43, .08); border-radius: var(--radius); background: rgba(255, 253, 248, .92); box-shadow: var(--shadow); }
+    .card-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+    .card-head h2 { margin: 0; color: var(--green-dark); font-family: Georgia, serif; font-size: 1rem; }
+    .card-body { padding: 12px; }
+    .badge { padding: 5px 8px; border-radius: 99px; color: var(--green); background: var(--mint); font-size: 11px; font-weight: 800; white-space: nowrap; }
+    .field { display: grid; gap: 5px; margin-bottom: 0; }
+    label { color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 13px; color: var(--ink); background: #fff; outline: 0; }
+    input, select { min-height: 36px; padding: 7px 9px; }
+    textarea { min-height: 190px; padding: 14px; line-height: 1.5; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 4px rgba(23, 107, 75, .12); }
+    .hint { color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+    .btn { min-height: 36px; padding: 7px 11px; border: 0; border-radius: 10px; color: white; background: var(--green); font-size: .84rem; font-weight: 800; transition: transform .15s ease, box-shadow .15s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 7px 16px rgba(23, 107, 75, .2); }
+    .btn.secondary { color: var(--ink); background: var(--mint); }
+    .btn.light { color: var(--ink); border: 1px solid var(--line); background: white; box-shadow: none; }
+    .btn.danger { color: #7b301f; background: #ffe0d5; }
+    .input-strip { margin-bottom: 12px; }
+    .input-row { display: grid; grid-template-columns: minmax(220px, 1.55fr) minmax(130px, .8fr) minmax(130px, .8fr) auto; gap: 10px; align-items: end; }
+    .input-row .toolbar { align-self: end; }
+    .offer-add-bar { display: grid; grid-template-columns: minmax(220px, 1fr) auto; gap: 8px; align-items: end; padding: 9px 12px; border-bottom: 1px solid var(--line); background: #fbfdf8; }
+    .offer-add-bar .field { margin: 0; }
+    .offer-add-bar .btn { min-height: 34px; }
+    .offer-add-status { grid-column: 1 / -1; min-height: 15px; margin: 0; color: var(--muted); font-size: 10px; }
+    .quick-add { display: grid; grid-template-columns: minmax(190px, 1fr) auto; gap: 8px; align-items: end; }
+    .custom-insurer-row { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(220px, 1fr) auto; gap: 10px; align-items: end; padding: 0 12px 12px; }
+    .custom-insurer-row input[type="file"] { min-height: 36px; padding: 7px; font-size: .78rem; }
+    .custom-insurer-status { min-height: 16px; margin: 0; color: var(--muted); font-size: 10px; }
+    .toolbar { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+    .table-scroll { max-height: 780px; overflow: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+    th { position: sticky; top: 0; z-index: 1; color: var(--muted); background: #f8fbf4; font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+    tbody tr.selected { background: linear-gradient(90deg, rgba(220, 243, 232, .85), rgba(255,255,255,.2)); }
+    tbody tr:hover { background: #f5fbf5; }
+    .check { width: 19px; height: 19px; accent-color: var(--green); }
+    .company { min-width: 220px; font-weight: 800; }
+    .company-name { display: block; color: var(--green-dark); font-size: .86rem; line-height: 1.12; }
+    .category-input { display: block; width: min(100%, 170px); min-height: 22px; margin: 0 0 2px; padding: 1px 3px; border: 0; border-bottom: 1px dashed var(--line); border-radius: 0; color: var(--muted); background: transparent; font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .category-input:focus { border-color: var(--green); box-shadow: none; }
+    .company-logo-slot { display: flex; align-items: center; justify-content: flex-start; width: 120px; height: 36px; margin-top: 3px; overflow: hidden; }
+    .company-logo { display: block; width: 112px; height: 32px; object-fit: contain; object-position: left center; }
+    .logo-placeholder { display: block; width: 112px; height: 32px; }
+    .company-topline { display: flex; align-items: flex-start; gap: 4px; }
+    .collapse-toggle { flex: 0 0 auto; width: 24px; min-height: 24px; padding: 2px 0; border: 1px solid var(--line); border-radius: 7px; color: var(--green); background: rgba(255,255,255,.75); font-size: 15px; font-weight: 900; line-height: 1; }
+    .company-topline .category-input { flex: 1; margin-top: 1px; }
+    tbody tr.group-base td { background: #fffdf8; }
+    tbody tr.group-alt td { background: #edf7ee; }
+    tbody tr.selected td { background: linear-gradient(90deg, rgba(220, 243, 232, .95), rgba(255,255,255,.35)); }
+    tbody tr.group-alt:hover td, tbody tr.group-base:hover td { background: #e3f2e5; }
+    .group-collapsed td { padding: 7px 8px; }
+    .collapsed-group { display: grid; grid-template-columns: 28px minmax(220px, 1fr) minmax(380px, .8fr); gap: 8px; align-items: center; }
+    .collapsed-company { display: grid; grid-template-columns: minmax(150px, 1fr) 120px; gap: 8px; align-items: center; }
+    .collapsed-company .company-name { grid-column: 1; }
+    .collapsed-company .category-input { grid-column: 1; grid-row: 2; width: 100%; }
+    .collapsed-company .company-logo-slot { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+    .collapsed-quick { display: grid; grid-template-columns: minmax(92px, 1fr) minmax(66px, .75fr) 28px minmax(78px, .85fr); gap: 6px; align-items: center; }
+    .collapsed-quick .cell-input { min-height: 28px; padding: 4px 6px; font-size: .76rem; }
+    .collapsed-quick .check { justify-self: center; }
+    .collapsed-quick .price { font-size: .76rem; text-align: right; }
+    .collapsed-meta { grid-column: 2 / -1; color: var(--muted); font-size: 10px; text-align: right; white-space: nowrap; }
+    .cell-input { min-height: 30px; padding: 5px 7px; font-size: .82rem; }
+    .amount-cell { min-width: 116px; }
+    .discount-cell { min-width: 92px; }
+    .price { color: var(--green); font-size: .88rem; font-weight: 900; white-space: nowrap; }
+    .discount { display: inline-block; padding: 5px 7px; border-radius: 8px; color: #7b5c00; background: var(--yellow); font-weight: 900; white-space: nowrap; }
+    .icon-btn { min-height: 32px; padding: 6px 9px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: white; }
+    .empty { padding: 28px 12px; color: var(--muted); text-align: center; }
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+    .stat { padding: 10px; border-radius: 10px; background: var(--mint); }
+    .stat.highlight { background: var(--yellow); }
+    .stat small { display: block; color: var(--muted); font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 4px; color: var(--green-dark); font-family: Georgia, serif; font-size: 1.25rem; }
+    .selected-list { display: grid; gap: 9px; }
+    .selected-item { padding: 8px; border: 1px solid var(--line); border-radius: 10px; background: white; font-size: .8rem; }
+    .selected-item strong { display: block; margin-bottom: 4px; }
+    .selected-item small { color: var(--muted); }
+    .message { padding: 12px; border-radius: 12px; color: var(--muted); background: #f5f7f1; font-size: 13px; line-height: 1.45; }
+    .note-card .card-body { padding: 10px; }
+    .note-fields { display: grid; gap: 8px; }
+    .note-card textarea { min-height: 72px; padding: 9px; font-size: 11px; line-height: 1.35; }
+    .compact-card .card-head { padding: 8px 10px; }
+    .compact-card .card-head h2 { font-size: .9rem; }
+    .compact-card .card-body { padding: 9px; }
+    .category-list, .priority-list { display: grid; gap: 5px; overflow-x: hidden; overflow-y: auto; }
+    .category-list { max-height: 100px; }
+    .priority-list { max-height: 174px; }
+    .category-row { display: grid; grid-template-columns: minmax(0, 1fr) 28px; gap: 5px; align-items: center; }
+    .category-row input { min-height: 30px; padding: 5px 7px; border-radius: 8px; font-size: 11px; }
+    .category-row .icon-btn { min-height: 30px; padding: 4px 7px; }
+    .compact-add { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px; margin-top: 7px; }
+    .compact-add input { min-height: 30px; padding: 5px 7px; border-radius: 8px; font-size: 11px; }
+    .compact-add .btn { min-height: 30px; padding: 5px 8px; font-size: 11px; }
+    .priority-item { display: grid; grid-template-columns: 28px 22px minmax(0, 1fr) auto; gap: 5px; align-items: center; min-height: 30px; padding: 5px 6px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+    .priority-item.dragging { opacity: .5; }
+    .drag-handle { color: var(--muted); font-size: 14px; text-align: center; cursor: grab; }
+    .priority-name { overflow: hidden; font-size: 11px; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+    .priority-actions { display: flex; gap: 3px; }
+    .priority-actions .icon-btn { min-height: 26px; padding: 3px 6px; font-size: 11px; }
+    .priority-delete { min-height: 26px; padding: 3px 7px; color: #a33b2e; font-size: 14px; font-weight: 900; line-height: 1; }
+    .compact-card .hint { margin: 6px 0 0; font-size: 10px; }
+    .proposal-card { margin-top: 14px; }
+    .bottom-settings { display: grid; gap: 12px; margin-top: 14px; }
+    .bottom-settings > .card { width: 100%; }
+    .bottom-settings > .compact-card:last-child { width: min(100%, 760px); }
+    .bottom-tools { display: grid; gap: 12px; }
+    .proposal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .variant { padding: 0; }
+    .variant:first-child { padding-top: 0; }
+    .variant:last-child { padding-bottom: 0; }
+    .variant-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 8px; }
+    .variant-head strong { color: var(--green-dark); }
+    .variant textarea { min-height: 260px; font-size: 13px; }
+    .status { min-height: 20px; margin-top: 8px; color: var(--green); font-size: 12px; font-weight: 700; }
+    .footer-note { margin-top: 20px; color: var(--muted); font-size: 12px; text-align: center; }
+    @media (max-width: 1180px) { .workbench { grid-template-columns: 1fr; } .input-row { grid-template-columns: 1fr 1fr; } .input-row .field:first-child { grid-column: 1 / -1; } .toolbar { grid-column: 1 / -1; justify-content: stretch; } .toolbar .btn { flex: 1; } }
+    @media (max-width: 780px) {
+      .shell { padding: 16px 12px 28px; }
+      .hero { align-items: flex-start; }
+      .workbench, .summary-column, .input-row, .quick-add, .offer-add-bar, .custom-insurer-row { display: grid; grid-template-columns: 1fr; }
+      .input-row .field:first-child { grid-column: auto; }
+      .proposal-grid { grid-template-columns: 1fr; }
+      .variant textarea { min-height: 300px; }
+      .toolbar { justify-content: stretch; }
+      .toolbar .btn { flex: 1 1 calc(50% - 9px); }
+      .card-head, .card-body { padding: 12px; }
+      .table-scroll { max-height: none; overflow-x: hidden; }
+      table { min-width: 0; table-layout: fixed; }
+      th, td { padding: 6px 4px; overflow-wrap: anywhere; }
+      th { font-size: 8px; letter-spacing: .03em; }
+      .company { min-width: 0; width: 38%; }
+      .company-name { font-size: .72rem; }
+      .amount-cell { min-width: 0; width: 18%; }
+      .discount-cell { min-width: 0; width: 15%; }
+      .cell-input { min-height: 30px; padding: 4px; font-size: .72rem; }
+      .category-input { width: 100%; font-size: 8px; }
+      .company-logo-slot { width: 84px; height: 28px; }
+      .company-logo, .logo-placeholder { width: 82px; height: 25px; }
+      .collapse-toggle { width: 22px; min-height: 22px; }
+      .collapsed-group { grid-template-columns: 25px minmax(0, 1fr); }
+      .collapsed-company { grid-template-columns: minmax(0, 1fr) 84px; }
+      .collapsed-quick { grid-column: 2; grid-template-columns: minmax(70px, 1fr) minmax(52px, .7fr) 26px minmax(66px, .8fr); gap: 4px; }
+      .collapsed-quick .cell-input { min-height: 28px; padding: 3px 4px; font-size: .68rem; }
+      .collapsed-quick .price { font-size: .68rem; text-align: left; }
+      .collapsed-meta { grid-column: 2; text-align: left; white-space: normal; }
+      .price { font-size: .72rem; white-space: normal; }
+      .check { width: 17px; height: 17px; }
+      th:last-child, td:last-child { width: 28px; }
+      .group-collapsed td { padding: 6px 4px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .btn { min-height: 48px; }
+      .bottom-settings > .compact-card:last-child { width: 100%; }
+      .priority-list { max-height: 174px; }
+    }
+    @media (max-width: 420px) { .toolbar .btn { flex-basis: 100%; } .stats { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <h1>Наталія Таталія PRO</h1>
+    </header>
+
+    <section class="card input-strip">
+      <div class="card-head"><h2>Вхідні дані</h2><span class="badge">крок 1</span></div>
+      <div class="card-body input-row">
+        <div class="field">
+          <label for="clientName">Клієнт</label>
+          <input id="clientName" type="text" placeholder="Наприклад, Олександр" />
+        </div>
+        <div class="field">
+          <label for="carName">Авто</label>
+          <input id="carName" type="text" placeholder="Марка, модель" />
+        </div>
+        <div class="field">
+          <label for="policyDate">Дата</label>
+          <input id="policyDate" type="date" aria-label="Дата договору" />
+        </div>
+        <div class="toolbar">
+          <button class="btn secondary" id="selectAllBtn">Обрати всі</button>
+          <button class="btn secondary" id="clearSelectionBtn">Очистити вибір</button>
+          <button class="btn light" id="exportDataBtn">Зберегти дані</button>
+          <button class="btn light" id="importDataBtn">Відновити дані</button>
+          <input id="importDataInput" type="file" accept="application/json,.json" hidden />
+          <button class="btn danger" id="resetAllBtn">Скинути</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="workbench">
+      <section class="card">
+        <div class="card-head"><h2>Варіанти від страховиків</h2><span class="badge" id="offerCount">0 варіантів</span></div>
+        <div class="offer-add-bar">
+          <div class="field">
+            <label for="newInsurer">Додати Страховика</label>
+            <select id="newInsurer"></select>
+        </div>
+          <button class="btn" id="addOfferBtn" type="button">Додати</button>
+          <p class="offer-add-status" id="offerAddStatus" aria-live="polite"></p>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Страховик / категорія</th><th>Вартість поліса</th><th>Знижка</th><th>✓</th><th>До сплати</th><th></th></tr></thead>
+            <tbody id="offersBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="summary-column stack">
+        <section class="card">
+          <div class="card-head"><h2>Підсумок</h2><span class="badge">крок 2</span></div>
+          <div class="card-body">
+            <div class="stats">
+              <div class="stat"><small>Обрано</small><strong id="selectedCount">0</strong></div>
+              <div class="stat highlight"><small>Найкраща ціна</small><strong id="lowestPrice">—</strong></div>
+            </div>
+            <div class="selected-list" id="selectedList"></div>
+          </div>
+        </section>
+
+        <section class="card note-card">
+          <div class="card-head"><h2>Тексти пропозицій</h2><span class="badge">редагується</span></div>
+          <div class="card-body">
+            <div class="note-fields">
+              <div class="field">
+                <label for="proposalNoteShort">Міні текст для Пропозиції 1</label>
+                <textarea id="proposalNoteShort">Пропоную оформити поліс за найвигіднішим варіантом:</textarea>
+              </div>
+              <div class="field">
+                <label for="proposalNoteDetailed">Міні текст для Пропозиції 2</label>
+                <textarea id="proposalNoteDetailed">Пропоную розглянути такі варіанти страхування:</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card note-card">
+          <div class="card-head"><h2>Підпис Лукʼянчук</h2><span class="badge">для обох текстів</span></div>
+          <div class="card-body">
+            <div class="field">
+              <label for="signatureText">Текст підпису автора</label>
+              <textarea id="signatureText" placeholder="Наприклад: З повагою, Наталія Лукʼянчук"></textarea>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <section class="card proposal-card">
+      <div class="card-head"><h2>Тексти для клієнта</h2><span class="badge">крок 3</span></div>
+      <div class="card-body">
+        <div class="proposal-grid">
+          <div class="variant">
+            <div class="variant-head"><strong>Пропозиція 1</strong><button class="icon-btn copy-one" data-variant="short">Копіювати</button></div>
+            <textarea id="textShort" readonly></textarea>
+          </div>
+          <div class="variant">
+            <div class="variant-head"><strong>Пропозиція 2</strong><button class="icon-btn copy-one" data-variant="detailed">Копіювати</button></div>
+            <textarea id="textDetailed" readonly></textarea>
+          </div>
+        </div>
+        <div class="actions"><button class="btn" id="copyAllBtn">Скопіювати обидві пропозиції</button></div>
+        <div class="status" id="copyStatus" aria-live="polite"></div>
+      </div>
+    </section>
+    <div class="bottom-settings">
+      <section class="card compact-card">
+        <div class="card-head"><h2>ДОДАТИ НОВУ СТРАХОВУ КОМПАНІЮ</h2><span class="badge">локально</span></div>
+        <div class="custom-insurer-row">
+          <div class="field">
+            <label for="newInsurerName">Назва страхової</label>
+            <input id="newInsurerName" type="text" placeholder="Назва страхової" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="newInsurerLogo">Логотип страхової</label>
+            <input id="newInsurerLogo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" />
+          </div>
+          <div class="field">
+            <button class="btn" id="addCustomInsurerBtn" type="button">Додати</button>
+            <p class="custom-insurer-status" id="customInsurerStatus" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card compact-card">
+        <div class="card-head"><h2>Вікові категорії</h2><span class="badge">зберігаються</span></div>
+        <div class="card-body">
+          <div class="category-list" id="categoryList"></div>
+          <div class="compact-add">
+            <input id="newCategory" type="text" placeholder="Додати категорію" />
+            <button class="btn" id="addCategoryBtn">Додати</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card compact-card">
+        <div class="card-head"><h2>Страховики</h2><button class="icon-btn" id="resetOrderBtn">Скинути порядок</button></div>
+        <div class="card-body">
+          <div class="priority-list" id="insurerList"></div>
+          <p class="hint">Перетягуйте компанії або використовуйте стрілки, щоб змінити пріоритет.</p>
+        </div>
+      </section>
+    </div>
+    <p class="footer-note">Файл працює локально у браузері. Для спільної роботи його можна розмістити на внутрішньому або публічному веб-сервері.</p>
+  </main>
+
+  <script>
+    const BASE_INSURERS = [
+      'СК «Євроінс Україна»', 'СК «ББС ІНШУРАНС»', 'СК «USG»',
+      'СК «АРСЕНАЛ СТРАХУВАННЯ»', 'СК «ЄСА»', 'СК «UTICO»', 'СК «ІНГО»', 'СК «АРКС»', 'СК «ТАС»',
+      'СК «КНЯЖА»', 'СК «ПЗУ УКРАЇНА»', 'СК «ОРАНТА»', 'СК «Експрес Страхування»',
+      'СК «ВУСО»', 'СК «Універсальна»', 'СК «Еталон»', 'СК «ІНТЕР-ПОЛІС»', 'СК «UNIQA»', 'СК «ЄТС»'
+    ];
+    const DEFAULT_GROUPS = [
+      ['СК «Євроінс Україна»', 'Стандарт', null, [2, 7, 9]],
+      ['СК «Євроінс Україна»', 'Розширений', null, [2, 7, 9]],
+      ['СК «ББС ІНШУРАНС»', 'Стандарт', null, [2, 5, 7]],
+      ['СК «USG»', 'Стандарт', null, [2, 7, 9]],
+      ['СК «АРСЕНАЛ СТРАХУВАННЯ»', 'Стандарт', null, [4, 7, 9]],
+      ['СК «ЄСА»', 'Стандарт', null, [3, 6, 8]],
+      ['СК «UTICO»', 'Стандарт', null, [2, 6, 8]],
+      ['СК «ІНГО»', 'Стандарт', null, [3, 5, 7]],
+      ['СК «АРКС»', 'Стандарт', null, [2, 5, 8]],
+      ['СК «ТАС»', 'Стандарт', null, [3, 6, 9]],
+      ['СК «КНЯЖА»', 'Стандарт', null, [2, 6, 8]],
+      ['СК «ПЗУ УКРАЇНА»', 'Стандарт', null, [2, 5, 7]],
+      ['СК «ОРАНТА»', 'Стандарт', null, [2, 4, 6]],
+      ['СК «Експрес Страхування»', 'Стандарт', null, [3, 6, 8]],
+      ['СК «ВУСО»', 'Стандарт', null, [2, 5, 7]],
+      ['СК «Універсальна»', 'Стандарт', null, [2, 5, 8]],
+      ['СК «Еталон»', 'Стандарт', null, [2, 4, 6]],
+      ['СК «ІНТЕР-ПОЛІС»', 'Стандарт', null, [2, 5, 7]],
+      ['СК «UNIQA»', 'Стандарт', null, [3, 6, 9]],
+      ['СК «ЄТС»', 'Стандарт', null, [2, 4, 6]]
+    ];
+    const AGE_CATEGORIES_DEFAULTS = [
+      'вік водіїв від 27 років, пробіг за рік до 15 тис.км',
+      'вік водіїв від 27 років, пробіг за рік до 30 тис.км',
+      'без обмежень по віку і пробіг за рік до 15 тис.км',
+      'без обмежень по віку і пробіг за рік до 30 тис.км',
+      'без обмежень',
+      'без обмежень по віку водіїв',
+      'без обмежень по віку та пробігу',
+      'без обмежень по віку водіїв + тех.асистанс',
+      'вік водіїв від 30 років',
+      'вік водіїв від 22 до 75 років',
+      'вік водіїв від 23 до 76 років',
+      'вік водіїв від 24 до 39 років',
+      'вік водіїв від 25 до 75 років',
+      'вік водіїв від 36 до 65 років',
+      'вік водіїв від 22 років',
+      'вік водіїв від 25 років',
+      'вік водіїв від 26 років',
+      'вік водіїв від 27 років',
+      'вік водіїв від 33 років',
+      'вік водіїв від 40 років',
+      'вік водіїв від 46 років',
+      'вік водіїв від 49 років'
+    ];
+    const STORAGE_KEYS = {
+      categories: 'policy-calculator-categories',
+      insurerOrder: 'policy-calculator-insurer-order',
+      categoryPreferences: 'policy-calculator-category-preferences',
+      collapsedGroups: 'policy-calculator-collapsed-groups',
+      variantOrder: 'policy-calculator-variant-order',
+      offers: 'policy-calculator-offers',
+      customInsurers: 'policy-calculator-custom-insurers',
+      removedInsurers: 'policy-calculator-removed-insurers',
+      signature: 'policy-calculator-signature',
+      form: 'policy-calculator-form'
+    };
+    const LOGOS = {
+      'СК «Євроінс Україна»': 'assets/logos/EUROINS.svg',
+      'СК «ББС ІНШУРАНС»': 'assets/logos/BBS.webp',
+      'СК «USG»': 'assets/logos/USG.png',
+      'СК «ПЗУ УКРАЇНА»': 'assets/logos/PZU.png',
+      'СК «АРСЕНАЛ СТРАХУВАННЯ»': 'assets/logos/ARSENAL.png',
+      'СК «ЄСА»': 'assets/logos/ESA.png',
+      'СК «UTICO»': 'assets/logos/UTICO.png',
+      'СК «ІНГО»': 'assets/logos/INGO.png',
+      'СК «АРКС»': 'assets/logos/ARX.png',
+      'СК «ТАС»': 'assets/logos/TAS.png',
+      'СК «ОРАНТА»': 'assets/logos/ORANTA.png',
+      'СК «Експрес Страхування»': 'assets/logos/EXPRESS.png',
+      'СК «КНЯЖА»': 'assets/logos/KNYAZHA.png',
+      'СК «ВУСО»': 'assets/logos/VUSO.png',
+      'СК «UNIQA»': 'assets/logos/UNIQA.webp',
+      'СК «Еталон»': 'assets/logos/ETALON.png',
+      'СК «ЄТС»': 'assets/logos/ETS.png',
+      'СК «Універсальна»': 'assets/logos/UNIVERSAL.png',
+      'СК «ІНТЕР-ПОЛІС»': 'assets/logos/INTERPOLIS.png'
+    };
+    function readStored(key, fallback) {
+      try {
+        const value = window.localStorage.getItem(key);
+        return value === null ? fallback : JSON.parse(value);
+      } catch { return fallback; }
+    }
+    function writeStored(key, value) {
+      try { window.localStorage.setItem(key, JSON.stringify(value)); } catch { /* local file storage may be unavailable */ }
+    }
+    function normalizedCustomInsurers() {
+      const saved = readStored(STORAGE_KEYS.customInsurers, []);
+      if (!Array.isArray(saved)) return [];
+      const seen = new Set(BASE_INSURERS);
+      return saved.map((item, index) => ({
+        name: String(item?.name || '').trim(),
+        logo: typeof item?.logo === 'string' && item.logo.startsWith('data:image/') ? item.logo : '',
+        groupKey: typeof item?.groupKey === 'string' && item.groupKey ? item.groupKey : `custom-${index}`
+      })).filter((item) => item.name && item.name !== 'ТАТАТАТА' && !seen.has(item.name) && (seen.add(item.name), true));
+    }
+    const initialCustomInsurers = normalizedCustomInsurers();
+    let INSURERS = [...BASE_INSURERS, ...initialCustomInsurers.map((item) => item.name)];
+    const initialRemovedInsurers = (() => {
+      const saved = readStored(STORAGE_KEYS.removedInsurers, []);
+      return Array.isArray(saved) ? [...new Set(saved.filter((item) => INSURERS.includes(item)))] : [];
+    })();
+    function normalizedCategories() {
+      const saved = readStored(STORAGE_KEYS.categories, AGE_CATEGORIES_DEFAULTS);
+      const categories = Array.isArray(saved) ? saved.map((item) => String(item).trim()).filter(Boolean) : [];
+      return categories.length ? [...new Set(categories)] : [...AGE_CATEGORIES_DEFAULTS];
+    }
+    function normalizedInsurerOrder() {
+      const saved = readStored(STORAGE_KEYS.insurerOrder, []);
+      const removed = new Set(initialRemovedInsurers);
+      const order = Array.isArray(saved) ? saved.filter((item) => INSURERS.includes(item) && !removed.has(item)) : [];
+      return [...new Set([...order, ...INSURERS.filter((item) => !removed.has(item))])];
+    }
+    let nextId = 1;
+    let nextGroupId = 1;
+    let state;
+    const createGroup = (insurer, category, amount, discounts, groupKey, isDynamic = false) => {
+      const groupId = `group-${nextGroupId++}`;
+      const stableKey = groupKey || groupId;
+      const savedCategory = state?.categoryPreferences?.[stableKey];
+      const resolvedCategory = savedCategory || category;
+      return discounts.map((discount) => ({ id: nextId++, groupId, groupKey: stableKey, insurer, category: resolvedCategory, amount, discount, selected: false, isDynamic }));
+    };
+    const createDefaultOffers = () => DEFAULT_GROUPS
+      .filter(([insurer]) => !initialRemovedInsurers.includes(insurer))
+      .flatMap(([insurer, category, amount, discounts], index) => createGroup(insurer, category, amount, discounts, `default-${index}`));
+    state = {
+      categories: normalizedCategories(),
+      insurerOrder: normalizedInsurerOrder(),
+      categoryPreferences: readStored(STORAGE_KEYS.categoryPreferences, {}),
+      collapsedGroups: readStored(STORAGE_KEYS.collapsedGroups, {}),
+      customInsurers: initialCustomInsurers,
+      removedInsurers: initialRemovedInsurers,
+      variantOrder: [],
+      signature: String(readStored(STORAGE_KEYS.signature, '') || ''),
+      offers: []
+    };
+    const savedOffers = readStored(STORAGE_KEYS.offers, null);
+    const normalizeOffer = (offer, index) => {
+      const groupKey = String(offer?.groupKey || `restored-key-${index}`);
+      const isLegacyDynamic = groupKey.startsWith('group-') && !groupKey.startsWith('custom-');
+      return {
+      id: Number(offer?.id) || index + 1,
+      groupId: String(offer?.groupId || `restored-group-${index}`),
+      groupKey,
+      insurer: String(offer?.insurer || '').trim(),
+      category: String(offer?.category || ''),
+      amount: offer?.amount === null || offer?.amount === '' || !Number.isFinite(Number(offer?.amount)) ? null : Math.max(0, Number(offer.amount)),
+      discount: Math.min(100, Math.max(0, Number(offer?.discount) || 0)),
+      selected: Boolean(offer?.selected),
+      isDynamic: Boolean(offer?.isDynamic) || isLegacyDynamic
+      };
+    };
+    const allowedInsurers = new Set(state.insurerOrder);
+    state.offers = Array.isArray(savedOffers) && savedOffers.length
+      ? savedOffers.map(normalizeOffer).filter((offer) => allowedInsurers.has(offer.insurer) && offer.insurer !== 'ТАТАТАТА')
+      : createDefaultOffers();
+    state.customInsurers.forEach((item) => {
+      if (allowedInsurers.has(item.name) && !state.offers.some((offer) => offer.insurer === item.name)) {
+        state.offers.push(...createGroup(item.name, state.categories[0] || '', null, [2, 7, 9], item.groupKey));
+      }
+    });
+    nextId = Math.max(0, ...state.offers.map((offer) => offer.id)) + 1;
+    nextGroupId = Math.max(0, ...state.offers.map((offer) => Number(String(offer.groupId).replace(/\D/g, '')) || 0)) + 1;
+    state.variantOrder = Array.isArray(readStored(STORAGE_KEYS.variantOrder, []))
+      ? readStored(STORAGE_KEYS.variantOrder, []).filter((key) => state.offers.some((offer) => offer.groupKey === key))
+      : [];
+    writeStored(STORAGE_KEYS.customInsurers, state.customInsurers);
+    writeStored(STORAGE_KEYS.insurerOrder, state.insurerOrder);
+    writeStored(STORAGE_KEYS.variantOrder, state.variantOrder);
+    writeStored(STORAGE_KEYS.offers, state.offers);
+    const $ = (id) => document.getElementById(id);
+    const money = (value) => new Intl.NumberFormat('uk-UA', { maximumFractionDigits: 0 }).format(Math.round(value)) + ' грн';
+    const safe = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' })[char]);
+    const amountFor = (offer) => Math.max(0, Number(offer.amount) || 0);
+    const hasAmount = (offer) => offer.amount !== null && offer.amount !== '' && Number.isFinite(Number(offer.amount));
+    const payFor = (offer) => amountFor(offer) * (1 - Math.min(100, Math.max(0, Number(offer.discount) || 0)) / 100);
+    const priceFor = (offer) => hasAmount(offer) ? money(payFor(offer)) : '—';
+    const selectedOffers = () => state.offers.filter((offer) => offer.selected).map((offer) => ({ ...offer, pay: payFor(offer) })).sort((a, b) => {
+      if (hasAmount(a) !== hasAmount(b)) return hasAmount(a) ? -1 : 1;
+      return a.pay - b.pay;
+    });
+    function groupedOffers() {
+      const groups = [];
+      const byId = new Map();
+      state.offers.forEach((offer) => {
+        if (!byId.has(offer.groupId)) {
+          const group = { id: offer.groupId, offers: [] };
+          byId.set(offer.groupId, group);
+          groups.push(group);
+        }
+        byId.get(offer.groupId).offers.push(offer);
+      });
+      return groups;
+    }
+    function activeInsurerSet() {
+      return new Set(state.insurerOrder.filter((insurer) => insurer !== 'ТАТАТАТА'));
+    }
+    function orderedGroups() {
+      const priority = new Map(state.insurerOrder.map((insurer, index) => [insurer, index]));
+      const pinned = new Map(state.variantOrder.map((groupKey, index) => [groupKey, index]));
+      return groupedOffers()
+        .filter((group) => activeInsurerSet().has(group.offers[0]?.insurer))
+        .sort((a, b) => {
+          const aDynamic = Boolean(a.offers[0]?.isDynamic);
+          const bDynamic = Boolean(b.offers[0]?.isDynamic);
+          if (aDynamic !== bDynamic) return aDynamic ? -1 : 1;
+          const aPinned = pinned.has(a.offers[0]?.groupKey);
+          const bPinned = pinned.has(b.offers[0]?.groupKey);
+          if (aPinned !== bPinned) return aPinned ? -1 : 1;
+          if (aPinned && pinned.get(a.offers[0].groupKey) !== pinned.get(b.offers[0].groupKey)) {
+            return pinned.get(a.offers[0].groupKey) - pinned.get(b.offers[0].groupKey);
+          }
+          return (priority.get(a.offers[0].insurer) ?? INSURERS.length) - (priority.get(b.offers[0].insurer) ?? INSURERS.length);
+        });
+    }
+    function isGroupCollapsed(group, groupIndex) {
+      const key = group.offers[0]?.groupKey;
+      return Object.prototype.hasOwnProperty.call(state.collapsedGroups, key) ? Boolean(state.collapsedGroups[key]) : groupIndex >= 7;
+    }
+    function toggleMarkup(group, collapsed) {
+      const key = safe(group.offers[0].groupKey);
+      return `<button class="collapse-toggle" type="button" data-action="toggle-group" data-group-key="${key}" aria-expanded="${collapsed ? 'false' : 'true'}" aria-label="${collapsed ? 'Розгорнути' : 'Згорнути'} групу">${collapsed ? '+' : '−'}</button>`;
+    }
+    function categoryOptions(value) {
+      const options = state.categories.includes(value) || !value ? state.categories : [value, ...state.categories];
+      return options.map((option) => `<option value="${safe(option)}" ${option === value ? 'selected' : ''}>${safe(option)}</option>`).join('');
+    }
+    function categorySelectMarkup(offer, extraClass = '') {
+      return `<select class="category-input ${extraClass}" data-group-id="${offer.groupId}" data-field="category" aria-label="Категорія">${categoryOptions(offer.category)}</select>`;
+    }
+    function logoMarkup(insurer) {
+      const custom = state.customInsurers.find((item) => item.name === insurer);
+      const logo = LOGOS[insurer] || custom?.logo;
+      return `<span class="company-logo-slot">${logo ? `<img class="company-logo" src="${logo}" alt="Логотип ${safe(insurer)}" onerror="this.remove()">` : '<span class="logo-placeholder" aria-hidden="true"></span>'}</span>`;
+    }
+    function collapsedGroupMarkup(group, groupIndex) {
+      const offer = group.offers.find((item) => item.selected) || group.offers[0];
+      const amount = hasAmount(offer) ? money(amountFor(offer)) : 'вартість не вказана';
+      const selectedCount = group.offers.filter((item) => item.selected).length;
+      const tone = groupIndex % 2 ? 'group-alt' : 'group-base';
+      return `<tr class="group-collapsed ${offer.selected ? 'selected ' : ''}${tone}">
+        <td colspan="6">
+          <div class="collapsed-group">
+            ${toggleMarkup(group, true)}
+            <div class="collapsed-company">
+              <span class="company-name">${safe(offer.insurer)}</span>
+              ${categorySelectMarkup(offer, 'collapsed-category')}
+              ${logoMarkup(offer.insurer)}
+            </div>
+            <div class="collapsed-quick" aria-label="Швидке редагування згорнутого страховика">
+              <input class="cell-input group-amount-input" type="number" min="0" step="0.01" value="${offer.amount == null ? '' : offer.amount}" placeholder="Сума" data-group-id="${group.id}" data-field="amount" aria-label="Вартість поліса">
+              <input class="cell-input" type="number" min="0" max="100" step="0.1" value="${offer.discount}" data-id="${offer.id}" data-field="discount" aria-label="Знижка у відсотках">
+              <input class="check" type="checkbox" ${offer.selected ? 'checked' : ''} data-id="${offer.id}" data-action="toggle" aria-label="Обрати пропозицію">
+              <span class="price" data-price-id="${offer.id}">${priceFor(offer)}</span>
+            </div>
+            <span class="collapsed-meta">${amount} · ${group.offers.length} знижки · обрано ${selectedCount}</span>
+          </div>
+        </td>
+      </tr>`;
+    }
+    
+    function fillInsurerSelect() {
+      $('newInsurer').innerHTML = state.insurerOrder.map((name) => `<option value="${safe(name)}">${safe(name)}</option>`).join('');
+    }
+    function discountsForInsurer(insurer) {
+      const found = DEFAULT_GROUPS.find(([name]) => name === insurer);
+      return found ? found[3] : [2, 7, 9];
+    }
+    function renderOffers() {
+      const groups = orderedGroups();
+      $('offerCount').textContent = `${groups.length} груп · ${state.offers.length} знижок`;
+      $('offersBody').innerHTML = state.offers.length ? groups.map((group, groupIndex) => {
+        if (isGroupCollapsed(group, groupIndex)) return collapsedGroupMarkup(group, groupIndex);
+        const tone = groupIndex % 2 ? 'group-alt' : 'group-base';
+        return group.offers.map((offer, index) => `
+        <tr class="${offer.selected ? 'selected ' : ''}${tone}">
+          ${index === 0 ? `
+            <td class="company" rowspan="${group.offers.length}">
+              <div class="company-topline">${toggleMarkup(group, false)}${categorySelectMarkup(offer)}</div>
+              <span class="company-name">${safe(offer.insurer)}</span>
+              ${logoMarkup(offer.insurer)}
+            </td>
+            <td class="amount-cell" rowspan="${group.offers.length}"><input class="cell-input group-amount-input" type="number" min="0" step="0.01" value="${offer.amount == null ? '' : offer.amount}" placeholder="Сума" data-group-id="${group.id}" data-field="amount" aria-label="Вартість поліса"></td>` : ''}
+          <td class="discount-cell"><input class="cell-input" type="number" min="0" max="100" step="0.1" value="${offer.discount}" data-id="${offer.id}" data-field="discount" aria-label="Знижка у відсотках"></td>
+          <td><input class="check" type="checkbox" ${offer.selected ? 'checked' : ''} data-id="${offer.id}" data-action="toggle" aria-label="Обрати пропозицію"></td>
+          <td class="price" data-price-id="${offer.id}">${priceFor(offer)}</td>
+          <td><button class="icon-btn" data-id="${offer.id}" data-action="remove" aria-label="Видалити варіант">×</button></td>
+        </tr>`).join('');
+      }).join('') : `<tr><td colspan="6" class="empty">Немає варіантів. Додайте першу пропозицію зверху.</td></tr>`;
+    }
+    function renderSummary() {
+      const selected = selectedOffers();
+      $('selectedCount').textContent = selected.length;
+      $('lowestPrice').textContent = selected.length && hasAmount(selected[0]) ? money(selected[0].pay) : '—';
+      $('selectedList').innerHTML = selected.length ? selected.map((offer) => `
+        <div class="selected-item"><strong>${safe(offer.insurer)}${offer.category ? ` · ${safe(offer.category)}` : ''}</strong><small>Сума: ${hasAmount(offer) ? money(amountFor(offer)) : 'не вказано'} · Знижка: ${offer.discount}% · До сплати: ${hasAmount(offer) ? money(offer.pay) : '—'}</small></div>`).join('') : '<div class="message">Поки нічого не вибрано. Поставте галочки біля варіантів, які хочете показати клієнту.</div>';
+    }
+    function buildTexts() {
+      const selected = selectedOffers();
+      const client = $('clientName').value.trim() || 'клієнте';
+      const car = $('carName').value.trim() || '[Авто]';
+      const date = formatDateForText($('policyDate').value) || '[Дата]';
+      const greeting = client === 'клієнте' ? 'Для клієнта' : `Добрий день, ${client}`;
+      const contractSentence = `Пропоную оформити договір страхування на ${car} з ${date}.`;
+      const introShort = $('proposalNoteShort').value.trim() || 'Пропоную оформити поліс за найвигіднішим варіантом:';
+      const introDetailed = $('proposalNoteDetailed').value.trim() || 'Пропоную розглянути такі варіанти страхування:';
+      const signature = $('signatureText').value.trim();
+      const addSignature = (text) => signature ? `${text}\n\n${signature}` : text;
+      if (!selected.length) {
+        return {
+          short: addSignature(`${greeting}!\n\n${contractSentence}\n\n${introShort}\n\nПоки що не обрано жодного варіанту.`),
+          detailed: addSignature(`${greeting}!\n\n${contractSentence}\n\n${introDetailed}\n\nПоки що не обрано жодного варіанту.`)
+        };
+      }
+      const best = selected[0];
+      const offerLabel = (offer) => `${offer.insurer}${offer.category ? ` (${offer.category})` : ''} — ${hasAmount(offer) ? money(offer.pay) : 'вартість буде уточнено'}`;
+      // Keep client-facing offer lines unnumbered and separated by one blank line.
+      const list = selected.map(offerLabel).join('\n\n');
+      return {
+        short: addSignature(`${greeting}!\n\n${contractSentence}\n\n${introShort}\n\nНайвигідніший варіант: ${offerLabel(best)}.\nТакож доступно варіантів: ${selected.length}.`),
+        detailed: addSignature(`${greeting}!\n\n${contractSentence}\n\n${introDetailed}\n\n${list}\n\nНайкращий за ціною варіант: ${offerLabel(best)}.`)
+      };
+    }
+
+    function formatDateForText(value) {
+      if (!value) return '';
+      const [year, month, day] = value.split('-');
+      return year && month && day ? `${day}.${month}.${year}` : value;
+    }
+
+    function saveForm() {
+      writeStored(STORAGE_KEYS.form, {
+        clientName: $('clientName').value,
+        carName: $('carName').value,
+        policyDate: $('policyDate').value,
+        proposalNoteShort: $('proposalNoteShort').value,
+        proposalNoteDetailed: $('proposalNoteDetailed').value
+      });
+    }
+    function renderTexts() {
+      const texts = buildTexts();
+      $('textShort').value = texts.short;
+      $('textDetailed').value = texts.detailed;
+    }
+    function renderGenerated() {
+      renderSummary();
+      renderTexts();
+    }
+    function renderCategoryManager() {
+      $('categoryList').innerHTML = state.categories.map((category, index) => `
+        <div class="category-row">
+          <input type="text" value="${safe(category)}" data-category-index="${index}" aria-label="Вікова категорія ${index + 1}">
+          <button class="icon-btn" type="button" data-action="remove-category" data-category-index="${index}" aria-label="Видалити категорію">×</button>
+        </div>`).join('');
+    }
+    function saveCategoryPreferences() {
+      const preferences = {};
+      state.offers.forEach((offer) => { preferences[offer.groupKey] = offer.category; });
+      state.categoryPreferences = { ...state.categoryPreferences, ...preferences };
+      writeStored(STORAGE_KEYS.categoryPreferences, state.categoryPreferences);
+    }
+    function renderInsurerManager() {
+      $('insurerList').innerHTML = state.insurerOrder.map((insurer, index) => `
+        <div class="priority-item" draggable="true" data-insurer-index="${index}">
+          <button class="icon-btn priority-delete" type="button" data-action="remove-insurer" data-insurer-index="${index}" aria-label="Видалити ${safe(insurer)}" title="Видалити зі списку">×</button>
+          <span class="drag-handle" aria-hidden="true">⋮⋮</span>
+          <span class="priority-name" title="${safe(insurer)}">${safe(insurer)}</span>
+          <span class="priority-actions">
+            <button class="icon-btn" type="button" data-action="move-insurer-up" data-insurer-index="${index}" aria-label="Підняти страховика">↑</button>
+            <button class="icon-btn" type="button" data-action="move-insurer-down" data-insurer-index="${index}" aria-label="Опустити страховика">↓</button>
+          </span>
+        </div>`).join('');
+    }
+    function saveInsurerOrder() {
+      writeStored(STORAGE_KEYS.insurerOrder, state.insurerOrder);
+    }
+    function saveRemovedInsurers() {
+      writeStored(STORAGE_KEYS.removedInsurers, state.removedInsurers);
+    }
+    function saveCollapsedGroups() {
+      writeStored(STORAGE_KEYS.collapsedGroups, state.collapsedGroups);
+    }
+    function saveVariantOrder() {
+      writeStored(STORAGE_KEYS.variantOrder, state.variantOrder);
+    }
+    function saveOffers() {
+      writeStored(STORAGE_KEYS.offers, state.offers);
+    }
+    function moveInsurer(from, to) {
+      if (from === to || from < 0 || to < 0 || from >= state.insurerOrder.length || to >= state.insurerOrder.length) return;
+      const [moved] = state.insurerOrder.splice(from, 1);
+      state.insurerOrder.splice(to, 0, moved);
+      saveInsurerOrder();
+      renderInsurerManager();
+      renderOffers();
+    }
+    function removeInsurer(index) {
+      if (index < 0 || index >= state.insurerOrder.length) return;
+      const [removed] = state.insurerOrder.splice(index, 1);
+      if (!removed) return;
+      state.removedInsurers = [...new Set([...state.removedInsurers, removed])];
+      if (state.customInsurers.some((item) => item.name === removed)) {
+        state.customInsurers = state.customInsurers.filter((item) => item.name !== removed);
+        INSURERS = INSURERS.filter((insurer) => insurer !== removed);
+        writeStored(STORAGE_KEYS.customInsurers, state.customInsurers);
+      }
+      state.offers = state.offers.filter((offer) => offer.insurer !== removed);
+      state.variantOrder = state.variantOrder.filter((groupKey) => state.offers.some((offer) => offer.groupKey === groupKey));
+      saveInsurerOrder();
+      saveRemovedInsurers();
+      saveVariantOrder();
+      saveOffers();
+      renderInsurerManager();
+      fillInsurerSelect();
+      renderOffers();
+      renderGenerated();
+    }
+    function updateCategory(index, value) {
+      if (index < 0 || index >= state.categories.length) return;
+      const previous = state.categories[index];
+      state.categories[index] = value;
+      if (previous && value && previous !== value) {
+        state.offers.forEach((offer) => {
+          if (offer.category === previous) {
+            offer.category = value;
+            state.categoryPreferences[offer.groupKey] = value;
+          }
+        });
+        writeStored(STORAGE_KEYS.categoryPreferences, state.categoryPreferences);
+      }
+      writeStored(STORAGE_KEYS.categories, state.categories);
+    }
+    function refreshOfferPrice(offer) {
+      const price = document.querySelector(`[data-price-id="${offer.id}"]`);
+      if (price) price.textContent = priceFor(offer);
+    }
+    function render() {
+      const active = document.activeElement;
+      const focusData = active && active.dataset && active.dataset.field ? { ...active.dataset } : null;
+      renderOffers();
+      renderCategoryManager();
+      renderInsurerManager();
+      renderGenerated();
+      if (focusData) {
+        const selector = focusData.groupId
+          ? `[data-group-id="${focusData.groupId}"][data-field="${focusData.field}"]`
+          : `[data-id="${focusData.id}"][data-field="${focusData.field}"]`;
+        const next = document.querySelector(selector);
+        if (next) {
+          next.focus();
+          if (next.type !== 'number' && typeof next.setSelectionRange === 'function') next.setSelectionRange(next.value.length, next.value.length);
+        }
+      }
+    }
+    function updateOffer(id, field, value) {
+      const offer = state.offers.find((item) => item.id === id);
+      if (!offer) return;
+      offer[field] = field === 'category' ? value : (value === '' ? null : Math.max(0, Number(value) || 0));
+      if (field === 'discount') offer.discount = Math.min(100, offer.discount);
+      saveOffers();
+      refreshOfferPrice(offer);
+      renderGenerated();
+    }
+    function updateGroup(groupId, field, value) {
+      const offers = state.offers.filter((offer) => offer.groupId === groupId);
+      if (!offers.length) return;
+      if (field === 'category') offers.forEach((offer) => offer.category = value);
+      if (field === 'amount') {
+        const amount = value === '' ? null : Math.max(0, Number(value) || 0);
+        offers.forEach((offer) => offer.amount = amount);
+      }
+      if (field === 'category') saveCategoryPreferences();
+      if (field === 'amount') offers.forEach(refreshOfferPrice);
+      saveOffers();
+      renderGenerated();
+    }
+    function handleOfferField(event) {
+      const target = event.target;
+      const id = Number(target.dataset.id);
+      if (target.dataset.action === 'toggle') {
+        const offer = state.offers.find((item) => item.id === id);
+        if (offer) {
+          offer.selected = target.checked;
+          target.closest('tr')?.classList.toggle('selected', target.checked);
+        }
+        saveOffers();
+        renderGenerated();
+        return;
+      }
+      if (target.dataset.groupId && target.dataset.field) { updateGroup(target.dataset.groupId, target.dataset.field, target.value); return; }
+      if (target.dataset.field) updateOffer(id, target.dataset.field, target.value);
+    }
+    $('offersBody').addEventListener('input', handleOfferField);
+    $('offersBody').addEventListener('change', handleOfferField);
+    $('offersBody').addEventListener('click', (event) => {
+      const toggle = event.target.closest('[data-action="toggle-group"]');
+      if (toggle) {
+        const key = toggle.dataset.groupKey;
+        state.collapsedGroups[key] = !isGroupCollapsed({ offers: [{ groupKey: key }] }, 0);
+        saveCollapsedGroups();
+        renderOffers();
+        return;
+      }
+      const button = event.target.closest('[data-action="remove"]');
+      if (!button) return;
+      const removedOffer = state.offers.find((offer) => offer.id === Number(button.dataset.id));
+      state.offers = state.offers.filter((offer) => offer.id !== Number(button.dataset.id));
+      if (removedOffer && !state.offers.some((offer) => offer.groupId === removedOffer.groupId)) {
+        state.variantOrder = state.variantOrder.filter((groupKey) => groupKey !== removedOffer.groupKey);
+        saveVariantOrder();
+      }
+      saveOffers();
+      render();
+    });
+    $('addOfferBtn').addEventListener('click', () => {
+      const insurer = $('newInsurer').value;
+      const status = $('offerAddStatus');
+      if (!insurer || !activeInsurerSet().has(insurer)) {
+        status.textContent = 'Оберіть страховика з активного списку.';
+        return;
+      }
+      const group = createGroup(insurer, state.categories[0] || 'Стандарт', null, discountsForInsurer(insurer), undefined, true);
+      state.offers.unshift(...group);
+      state.variantOrder = [group[0].groupKey, ...state.variantOrder.filter((key) => key !== group[0].groupKey)];
+      saveVariantOrder();
+      saveOffers();
+      status.textContent = `${insurer} додано на початок варіантів.`;
+      render();
+    });
+    $('addCustomInsurerBtn').addEventListener('click', () => {
+      const nameInput = $('newInsurerName');
+      const logoInput = $('newInsurerLogo');
+      const status = $('customInsurerStatus');
+      const name = nameInput.value.trim();
+      const file = logoInput.files?.[0];
+      if (!name) { status.textContent = 'Вкажіть назву страхової компанії.'; nameInput.focus(); return; }
+      if (name === 'ТАТАТАТА') { status.textContent = 'Цю назву не можна додати.'; nameInput.focus(); return; }
+      if (INSURERS.includes(name)) { status.textContent = 'Така страхова компанія вже є у списку.'; nameInput.focus(); return; }
+      if (file && !/^image\/(png|jpeg|webp|svg\+xml)$/.test(file.type)) { status.textContent = 'Оберіть PNG, JPG, JPEG, WEBP або SVG.'; return; }
+      const finish = (logo) => {
+        const groupKey = `custom-${Date.now()}-${nextGroupId}`;
+        state.customInsurers.push({ name, logo: logo || '', groupKey });
+        INSURERS.push(name);
+        state.insurerOrder.unshift(name);
+        writeStored(STORAGE_KEYS.customInsurers, state.customInsurers);
+        saveInsurerOrder();
+        const group = createGroup(name, state.categories[0] || '', null, [2, 7, 9], groupKey);
+        state.offers.unshift(...group);
+        state.variantOrder = [groupKey, ...state.variantOrder.filter((key) => key !== groupKey)];
+        saveVariantOrder();
+        saveOffers();
+        fillInsurerSelect();
+        nameInput.value = '';
+        logoInput.value = '';
+        status.textContent = `Додано: ${name}`;
+        render();
+      };
+      if (!file) { finish(''); return; }
+      const reader = new FileReader();
+      reader.addEventListener('load', () => finish(typeof reader.result === 'string' ? reader.result : ''));
+      reader.addEventListener('error', () => { status.textContent = 'Не вдалося прочитати логотип.'; });
+      reader.readAsDataURL(file);
+    });
+    $('categoryList').addEventListener('input', (event) => {
+      const target = event.target;
+      if (target.dataset.categoryIndex === undefined) return;
+      updateCategory(Number(target.dataset.categoryIndex), target.value);
+    });
+    $('categoryList').addEventListener('change', () => renderOffers());
+    $('categoryList').addEventListener('click', (event) => {
+      const button = event.target.closest('[data-action="remove-category"]');
+      if (!button || state.categories.length <= 1) return;
+      const index = Number(button.dataset.categoryIndex);
+      const replacement = state.categories.find((_, categoryIndex) => categoryIndex !== index) || '';
+      const removed = state.categories[index];
+      state.categories.splice(index, 1);
+      state.offers.forEach((offer) => {
+        if (offer.category === removed) {
+          offer.category = replacement;
+          state.categoryPreferences[offer.groupKey] = replacement;
+        }
+      });
+      writeStored(STORAGE_KEYS.categories, state.categories);
+      writeStored(STORAGE_KEYS.categoryPreferences, state.categoryPreferences);
+      saveOffers();
+      renderCategoryManager();
+      renderOffers();
+    });
+    $('addCategoryBtn').addEventListener('click', () => {
+      const input = $('newCategory');
+      const value = input.value.trim();
+      if (!value || state.categories.includes(value)) return;
+      state.categories.push(value);
+      writeStored(STORAGE_KEYS.categories, state.categories);
+      input.value = '';
+      renderCategoryManager();
+      renderOffers();
+      input.focus();
+    });
+    $('insurerList').addEventListener('click', (event) => {
+      const removeButton = event.target.closest('[data-action="remove-insurer"]');
+      if (removeButton) {
+        removeInsurer(Number(removeButton.dataset.insurerIndex));
+        return;
+      }
+      const button = event.target.closest('[data-action^="move-insurer-"]');
+      if (!button) return;
+      const index = Number(button.dataset.insurerIndex);
+      moveInsurer(index, button.dataset.action === 'move-insurer-up' ? index - 1 : index + 1);
+    });
+    $('insurerList').addEventListener('dragstart', (event) => {
+      const item = event.target.closest('.priority-item');
+      if (!item) return;
+      state.draggedInsurerIndex = Number(item.dataset.insurerIndex);
+      item.classList.add('dragging');
+      event.dataTransfer?.setData('text/plain', String(state.draggedInsurerIndex));
+    });
+    $('insurerList').addEventListener('dragend', (event) => event.target.closest('.priority-item')?.classList.remove('dragging'));
+    $('insurerList').addEventListener('dragover', (event) => event.preventDefault());
+    $('insurerList').addEventListener('drop', (event) => {
+      event.preventDefault();
+      const item = event.target.closest('.priority-item');
+      const from = state.draggedInsurerIndex;
+      if (!item || from === undefined) return;
+      moveInsurer(from, Number(item.dataset.insurerIndex));
+      state.draggedInsurerIndex = undefined;
+    });
+    $('resetOrderBtn').addEventListener('click', () => {
+      state.insurerOrder = INSURERS.filter((insurer) => !state.removedInsurers.includes(insurer));
+      saveInsurerOrder();
+      renderInsurerManager();
+      fillInsurerSelect();
+      renderOffers();
+    });
+    const savedForm = readStored(STORAGE_KEYS.form, {});
+    $('clientName').value = String(savedForm.clientName ?? $('clientName').value);
+    $('carName').value = String(savedForm.carName ?? '');
+    $('policyDate').value = String(savedForm.policyDate ?? '');
+    $('proposalNoteShort').value = String(savedForm.proposalNoteShort ?? $('proposalNoteShort').value);
+    $('proposalNoteDetailed').value = String(savedForm.proposalNoteDetailed ?? $('proposalNoteDetailed').value);
+    $('clientName').addEventListener('input', () => { saveForm(); renderGenerated(); });
+    $('carName').addEventListener('input', () => { saveForm(); renderGenerated(); });
+    $('policyDate').addEventListener('input', () => { saveForm(); renderGenerated(); });
+    $('policyDate').addEventListener('change', () => { saveForm(); renderGenerated(); });
+    $('proposalNoteShort').addEventListener('input', () => { saveForm(); renderTexts(); });
+    $('proposalNoteDetailed').addEventListener('input', () => { saveForm(); renderTexts(); });
+    $('signatureText').value = state.signature;
+    $('signatureText').addEventListener('input', () => {
+      state.signature = $('signatureText').value;
+      writeStored(STORAGE_KEYS.signature, state.signature);
+      renderTexts();
+    });
+    $('selectAllBtn').addEventListener('click', () => { state.offers.forEach((offer) => offer.selected = true); saveOffers(); render(); });
+    $('clearSelectionBtn').addEventListener('click', () => { state.offers.forEach((offer) => offer.selected = false); saveOffers(); render(); });
+    $('resetAllBtn').addEventListener('click', () => {
+      state.offers = createDefaultOffers();
+      state.customInsurers.forEach((item) => {
+        state.offers.push(...createGroup(item.name, state.categories[0] || '', null, [2, 7, 9], item.groupKey));
+      });
+      state.variantOrder = state.variantOrder.filter((key) => state.offers.some((offer) => offer.groupKey === key));
+      saveVariantOrder();
+      saveOffers();
+      $('clientName').value = '';
+      $('carName').value = '';
+      $('policyDate').value = '';
+      $('proposalNoteShort').value = 'Пропоную оформити поліс за найвигіднішим варіантом:';
+      $('proposalNoteDetailed').value = 'Пропоную розглянути такі варіанти страхування:';
+      $('signatureText').value = state.signature;
+      saveForm();
+      render();
+    });
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); } catch { const helper = document.createElement('textarea'); helper.value = text; document.body.appendChild(helper); helper.select(); document.execCommand('copy'); helper.remove(); }
+      $('copyStatus').textContent = 'Текст скопійовано.'; window.setTimeout(() => $('copyStatus').textContent = '', 2200);
+    }
+    function backupPayload() {
+      return {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        state: {
+          categories: state.categories,
+          insurerOrder: state.insurerOrder,
+          removedInsurers: state.removedInsurers,
+          categoryPreferences: state.categoryPreferences,
+          collapsedGroups: state.collapsedGroups,
+          variantOrder: state.variantOrder,
+          customInsurers: state.customInsurers,
+          signature: state.signature,
+          offers: state.offers
+        },
+        form: {
+          clientName: $('clientName').value,
+          carName: $('carName').value,
+          policyDate: $('policyDate').value,
+          proposalNoteShort: $('proposalNoteShort').value,
+          proposalNoteDetailed: $('proposalNoteDetailed').value
+        }
+      };
+    }
+    function saveBackupFile() {
+      const blob = new Blob([JSON.stringify(backupPayload(), null, 2)], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `калькулятор-страхування-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+      $('copyStatus').textContent = 'Резервну копію збережено.';
+      window.setTimeout(() => $('copyStatus').textContent = '', 2400);
+    }
+    function restoreBackup(payload) {
+      const saved = payload?.state;
+      if (!saved || !Array.isArray(saved.offers) || !Array.isArray(saved.categories)) throw new Error('Некоректний файл даних.');
+      const custom = Array.isArray(saved.customInsurers) ? saved.customInsurers.map((item, index) => ({
+        name: String(item?.name || '').trim(),
+        logo: typeof item?.logo === 'string' && item.logo.startsWith('data:image/') ? item.logo : '',
+        groupKey: typeof item?.groupKey === 'string' && item.groupKey ? item.groupKey : `custom-restored-${index}`
+      })).filter((item) => item.name && item.name !== 'ТАТАТАТА' && !BASE_INSURERS.includes(item.name)) : [];
+      const customNames = [...new Set(custom.map((item) => item.name))];
+      state.customInsurers = custom.filter((item, index) => customNames.indexOf(item.name) === index);
+      INSURERS = [...BASE_INSURERS, ...state.customInsurers.map((item) => item.name)];
+      state.categories = [...new Set(saved.categories.map((item) => String(item).trim()).filter(Boolean))];
+      if (!state.categories.length) state.categories = [...AGE_CATEGORIES_DEFAULTS];
+      state.removedInsurers = [...new Set((Array.isArray(saved.removedInsurers) ? saved.removedInsurers : []).filter((item) => INSURERS.includes(item)))];
+      const allowed = new Set(INSURERS.filter((item) => !state.removedInsurers.includes(item)));
+      const savedOrder = Array.isArray(saved.insurerOrder) ? saved.insurerOrder.filter((item) => allowed.has(item)) : [];
+      state.insurerOrder = [...new Set([...savedOrder, ...allowed])];
+      state.categoryPreferences = saved.categoryPreferences && typeof saved.categoryPreferences === 'object' ? saved.categoryPreferences : {};
+      state.collapsedGroups = saved.collapsedGroups && typeof saved.collapsedGroups === 'object' ? saved.collapsedGroups : {};
+      state.variantOrder = Array.isArray(saved.variantOrder) ? saved.variantOrder.map((key) => String(key)) : [];
+      state.signature = String(saved.signature || '');
+      state.offers = saved.offers.map((offer, index) => {
+        const groupKey = String(offer?.groupKey || `restored-key-${index}`);
+        const isLegacyDynamic = groupKey.startsWith('group-') && !groupKey.startsWith('custom-');
+        return {
+          id: Number(offer?.id) || index + 1,
+          groupId: String(offer?.groupId || `restored-group-${index}`),
+          groupKey,
+          insurer: String(offer?.insurer || ''),
+          category: String(offer?.category || ''),
+          amount: offer?.amount === null || offer?.amount === '' || !Number.isFinite(Number(offer?.amount)) ? null : Math.max(0, Number(offer.amount)),
+          discount: Math.min(100, Math.max(0, Number(offer?.discount) || 0)),
+          selected: Boolean(offer?.selected),
+          isDynamic: Boolean(offer?.isDynamic) || isLegacyDynamic
+        };
+      }).filter((offer) => offer.insurer && allowed.has(offer.insurer) && offer.insurer !== 'ТАТАТАТА');
+      state.variantOrder = state.variantOrder.filter((key) => state.offers.some((offer) => offer.groupKey === key));
+      nextId = Math.max(0, ...state.offers.map((offer) => offer.id)) + 1;
+      nextGroupId = Math.max(0, ...state.offers.map((offer) => Number(String(offer.groupId).replace(/\D/g, '')) || 0)) + 1;
+      writeStored(STORAGE_KEYS.categories, state.categories);
+      writeStored(STORAGE_KEYS.insurerOrder, state.insurerOrder);
+      writeStored(STORAGE_KEYS.removedInsurers, state.removedInsurers);
+      writeStored(STORAGE_KEYS.categoryPreferences, state.categoryPreferences);
+      writeStored(STORAGE_KEYS.collapsedGroups, state.collapsedGroups);
+      writeStored(STORAGE_KEYS.variantOrder, state.variantOrder);
+      writeStored(STORAGE_KEYS.offers, state.offers);
+      writeStored(STORAGE_KEYS.customInsurers, state.customInsurers);
+      writeStored(STORAGE_KEYS.signature, state.signature);
+      $('clientName').value = String(payload.form?.clientName || '');
+      $('carName').value = String(payload.form?.carName || '');
+      $('policyDate').value = String(payload.form?.policyDate || '');
+      $('proposalNoteShort').value = String(payload.form?.proposalNoteShort || '');
+      $('proposalNoteDetailed').value = String(payload.form?.proposalNoteDetailed || '');
+      saveForm();
+      $('signatureText').value = state.signature;
+      fillInsurerSelect();
+      render();
+    }
+    document.querySelectorAll('.copy-one').forEach((button) => button.addEventListener('click', () => copyText(buildTexts()[button.dataset.variant])));
+    $('copyAllBtn').addEventListener('click', () => { const texts = buildTexts(); copyText(`ПРОПОЗИЦІЯ 1\n${texts.short}\n\nПРОПОЗИЦІЯ 2\n${texts.detailed}`); });
+    $('exportDataBtn').addEventListener('click', saveBackupFile);
+    $('importDataBtn').addEventListener('click', () => $('importDataInput').click());
+    $('importDataInput').addEventListener('change', () => {
+      const file = $('importDataInput').files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        try {
+          restoreBackup(JSON.parse(String(reader.result || '{}')));
+          $('copyStatus').textContent = 'Дані відновлено.';
+        } catch (error) {
+          $('copyStatus').textContent = error.message || 'Не вдалося відновити дані.';
+        }
+        $('importDataInput').value = '';
+        window.setTimeout(() => $('copyStatus').textContent = '', 3000);
+      });
+      reader.addEventListener('error', () => { $('copyStatus').textContent = 'Не вдалося прочитати файл даних.'; });
+      reader.readAsText(file);
+    });
+    fillInsurerSelect(); render();
+    if ('serviceWorker' in navigator && /^https?:$/.test(window.location.protocol)) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
